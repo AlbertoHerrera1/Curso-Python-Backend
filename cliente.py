@@ -13,6 +13,11 @@ def put_favorito():
                                     "id": 1})
     print(respuesta.json())
 
+def get_item():
+    respuesta = requests.get(URL_BASE + "/item", params={"id": "ajsdh"})
+    print(respuesta.json())
+
 if __name__ == "__main__":
     # get_usuario()
-    put_favorito()
+    # put_favorito()
+    get_item()

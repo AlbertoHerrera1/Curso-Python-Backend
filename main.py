@@ -23,3 +23,10 @@ def put_favorito(nombre: str, ultima_fecha: str, id: int):
     usuario['favoritos'].append({
         "nombre": nombre, "ultima-fecha": ultima_fecha})
     return usuario
+
+@app.get("/item")
+def get_usuario(id: str):
+    item = items.get(id)
+    if not item:
+        return "No se encontró el item"
+    return item

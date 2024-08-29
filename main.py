@@ -11,4 +11,6 @@ def get_base():
 @app.get("/usuario/{id}")
 def get_usuario(id: int):
     usuario = usuarios.get(id)
+    if not usuario:
+        return "No se encontró el usuario"
     return usuario

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from super_db import usuarios, items
 
 app = FastAPI()
@@ -30,3 +31,16 @@ def get_usuario(id: str):
     if not item:
         return "No se encontró el item"
     return item
+
+class Usuario(BaseModel):
+    nombre: str
+    apellido: str
+    edad: int
+    favoritos: list
+
+@app.post("/usuario")
+def post_usuario(usuario: Usuario):
+    ultimo_id = len(usuarios)
+    usuarios[ultimo_id + 1] = usuario.model_dump()
+    print(usuarios)
+    return "Guardado"
